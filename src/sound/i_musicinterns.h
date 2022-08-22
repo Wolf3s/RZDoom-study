@@ -39,10 +39,10 @@ EXTERN_CVAR (Float, timidity_mastervolume)
 #ifndef _WIN32
 struct MIDIHDR
 {
-	uint8_t *lpData;
-	uint32_t dwBufferLength;
-	uint32_t dwBytesRecorded;
-	MidiHeader *lpNext;
+    BYTE *lpData;
+    DWORD dwBufferLength;
+    DWORD dwBytesRecorded;
+    MIDIHDR *lpNext;
 };
 
 enum
@@ -56,13 +56,13 @@ enum
     MOD_SWSYNTH
 };
 
-typedef uint8_t *LPSTR;
+typedef BYTE *LPSTR;
 
-#define MEVT_TEMPO            ((uint8_t)1)
-#define MEVT_NOP            ((uint8_t)2)
-#define MEVT_LONGMSG        ((uint8_t)128)
+#define MEVT_TEMPO            ((BYTE)1)
+#define MEVT_NOP            ((BYTE)2)
+#define MEVT_LONGMSG        ((BYTE)128)
 
-#define MEVT_EVENTTYPE(x)    ((uint8_t)((x) >> 24))
+#define MEVT_EVENTTYPE(x)    ((BYTE)((x) >> 24))
 #define MEVT_EVENTPARM(x)   ((x) & 0xffffff)
 
 #define MOM_DONE            969
@@ -130,7 +130,7 @@ public:
     bool FakeVolume();
     bool NeedThreadedCallback();
     bool Pause(bool paused);
-    void PrecacheInstruments(const uint16_t *instruments, int count);
+    void PrecacheInstruments(const WORD *instruments, int count);
 
 protected:
     static void CALLBACK CallbackFunc(HMIDIOUT, UINT, DWORD_PTR, DWORD, DWORD);
@@ -341,14 +341,14 @@ public:
     ~WildMIDIDevice();
 
     int Open(void (*callback)(unsigned int, void *, DWORD, DWORD), void *userdata);
-    void PrecacheInstruments(const uint16_t *instruments, int count);
+    void PrecacheInstruments(const WORD *instruments, int count);
     FString GetStats();
 
 protected:
     WildMidi_Renderer *Renderer;
 
     void HandleEvent(int status, int parm1, int parm2);
-    void HandleLongEvent(const uint8_t *data, int len);
+    void HandleLongEvent(const BYTE *data, int len);
     void ComputeOutput(float *buffer, int len);
     void WildMidiSetOption(int opt, int set);
 };
@@ -359,8 +359,6 @@ protected:
 #ifndef DYN_FLUIDSYNTH
 #include <fluidsynth.h>
 #else
-#include "i_module.h"
-extern FModule FluidSynthModule;
 struct fluid_settings_t;
 struct fluid_synth_t;
 #endif
@@ -379,7 +377,7 @@ public:
 
 protected:
     void HandleEvent(int status, int parm1, int parm2);
-    void HandleLongEvent(const uint8_t *data, int len);
+    void HandleLongEvent(const BYTE *data, int len);
     void ComputeOutput(float *buffer, int len);
     int LoadPatchSets(const char *patches);
 
@@ -417,6 +415,11 @@ protected:
     void (STACK_ARGS *fluid_synth_set_chorus)(fluid_synth_t *, int, double, double, double, int);
     int (STACK_ARGS *fluid_synth_sysex)(fluid_synth_t *, const char *, int, char *, int *, int *, int);
 
+#ifdef _WIN32
+    HMODULE FluidSynthDLL;
+#else
+    void *FluidSynthSO;
+#endif
     bool LoadFluidSynth();
     void UnloadFluidSynth();
 #endif
@@ -508,7 +511,7 @@ protected:
     int Division;
     int Tempo;
     int InitialTempo;
-    uint8_t ChannelVolumes[16];
+    BYTE ChannelVolumes[16];
     DWORD Volume;
     EMidiDevice DeviceType;
     bool CallbackIsThreaded;
@@ -538,8 +541,8 @@ protected:
     DWORD *MakeEvents(DWORD *events, DWORD *max_events_p, DWORD max_time);
 
     MUSHeader *MusHeader;
-    uint8_t *MusBuffer;
-    uint8_t LastVelocity[16];
+    BYTE *MusBuffer;
+    BYTE LastVelocity[16];
     size_t MusP, MaxMusP;
 };
 
@@ -570,13 +573,13 @@ protected:
     DWORD *SendCommand (DWORD *event, TrackInfo *track, DWORD delay, ptrdiff_t room, bool &sysex_noroom);
     TrackInfo *FindNextDue ();
 
-    uint8_t *MusHeader;
+    BYTE *MusHeader;
     int SongLen;
     TrackInfo *Tracks;
     TrackInfo *TrackDue;
     int NumTracks;
     int Format;
-    uint16_t DesignationMask;
+    WORD DesignationMask;
 };
 
 // HMI file played with a MIDI stream ---------------------------------------
@@ -584,7 +587,7 @@ protected:
 struct AutoNoteOff
 {
     DWORD Delay;
-    uint8_t Channel, Key;
+    BYTE Channel, Key;
 };
 // Sorry, std::priority_queue, but I want to be able to modify the contents of the heap.
 class NoteOffQueue : public TArray<AutoNoteOff>
@@ -633,7 +636,7 @@ protected:
     static DWORD ReadVarLenHMI(TrackInfo *);
     static DWORD ReadVarLenHMP(TrackInfo *);
 
-    uint8_t *MusHeader;
+    BYTE *MusHeader;
     int SongLen;
     int NumTracks;
     TrackInfo *Tracks;
@@ -660,8 +663,8 @@ protected:
 
     XMISong(const XMISong *original, const char *filename, EMidiDevice type);    // file dump constructor
 
-    int FindXMIDforms(const uint8_t *chunk, int len, TrackInfo *songs) const;
-    void FoundXMID(const uint8_t *chunk, int len, TrackInfo *song) const;
+    int FindXMIDforms(const BYTE *chunk, int len, TrackInfo *songs) const;
+    void FoundXMID(const BYTE *chunk, int len, TrackInfo *song) const;
     bool SetMIDISubsong(int subsong);
     void DoInitialSetup();
     void DoRestart();
@@ -673,7 +676,7 @@ protected:
     DWORD *SendCommand (DWORD *event, EventSource track, DWORD delay, ptrdiff_t room, bool &sysex_noroom);
     EventSource FindNextDue();
 
-    uint8_t *MusHeader;
+    BYTE *MusHeader;
     int SongLen;        // length of the entire file
     int NumSongs;
     TrackInfo *Songs;

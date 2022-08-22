@@ -106,7 +106,7 @@
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>C:\sdl2_32bit;src\win32;src\sound;src;zlib;src\g_shared;src\g_doom;src\g_raven;src\g_heretic;src\g_hexen;src\g_strife;jpeg-6b;game-music-emu;gdtoa;bzip2;lzma\C;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\FMOD SoundSystem\FMOD Studio API Windows\api\core\inc;C:\sdl2_32bit;src\win32;src\sound;src;zlib;src\g_shared;src\g_doom;src\g_raven;src\g_heretic;src\g_hexen;src\g_strife;jpeg-6b;game-music-emu;gdtoa;bzip2;lzma\C;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>NDEBUG;WIN32;_WIN32;_WINDOWS;HAVE_STRUPR;HAVE_FILELENGTH;NO_VA_COPY;BACKPATCH;HAVE_FLUIDSYNTH;DYN_FLUIDSYNTH;HAVE_OPENAL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <ExceptionHandling>Sync</ExceptionHandling>
@@ -170,8 +170,8 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
-      <AdditionalIncludeDirectories>C:\Games\Doom\Data\Games\Development\sdl2;src\win32;src\sound;src;zlib;src\g_shared;src\g_doom;src\g_raven;src\g_heretic;src\g_hexen;src\g_strife;jpeg-6b;game-music-emu;gdtoa;bzip2;lzma\C;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NDEBUG;WIN32;_WIN32;_WINDOWS;HAVE_STRUPR;HAVE_FILELENGTH;NO_VA_COPY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\FMOD SoundSystem\FMOD Studio API Windows\api\core\inc;C:\sdl2;src\win32;src\sound;src;zlib;src\g_shared;src\g_doom;src\g_raven;src\g_heretic;src\g_hexen;src\g_strife;jpeg-6b;game-music-emu;gdtoa;bzip2;lzma\C;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>FMOD_STUDIO;NDEBUG;WIN32;_WIN32;_WINDOWS;HAVE_STRUPR;HAVE_FILELENGTH;NO_VA_COPY;NO_OPENAL;HAVE_FMOD;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FunctionLevelLinking>false</FunctionLevelLinking>
@@ -192,7 +192,7 @@
       <Culture>0x0409</Culture>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>ddraw.lib;dxguid.lib;dinput8.lib;comctl32.lib;strmiids.lib;wsock32.lib;ws2_32.lib;winmm.lib;openal32.lib;setupapi.lib;oleaut32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ddraw.lib;dxguid.lib;dinput8.lib;comctl32.lib;strmiids.lib;wsock32.lib;ws2_32.lib;winmm.lib;fmod_vc.lib;setupapi.lib;oleaut32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ShowProgress>NotSet</ShowProgress>
       <OutputFile>../rzdoom.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -211,7 +211,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <SetChecksum>true</SetChecksum>
       <TargetMachine>MachineX64</TargetMachine>
-      <AdditionalLibraryDirectories>C:\Games\Doom\Data\Games\Development\sdl2;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Program Files %28x86%29\FMOD SoundSystem\FMOD Studio API Windows\api\core\lib\x64;C:\sdl2;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -874,7 +874,6 @@
     <ClCompile Include="src\info.cpp" />
     <ClCompile Include="src\intermission\intermission.cpp" />
     <ClCompile Include="src\intermission\intermission_parse.cpp" />
-    <ClCompile Include="src\i_module.cpp" />
     <ClCompile Include="src\i_net.cpp" />
     <ClCompile Include="src\keysections.cpp" />
     <ClCompile Include="src\lumpconfigfile.cpp" />
@@ -1083,9 +1082,11 @@
     <ClCompile Include="src\sfmt\SFMT.cpp" />
     <ClCompile Include="src\skins.cpp" />
     <ClCompile Include="src\SkylineBinPack.cpp" />
+    <ClCompile Include="src\sound\fmodsound.cpp" />
     <ClCompile Include="src\sound\i_music.cpp" />
     <ClCompile Include="src\sound\i_sound.cpp" />
     <ClCompile Include="src\sound\music_cd.cpp" />
+    <ClCompile Include="src\sound\music_dumb.cpp" />
     <ClCompile Include="src\sound\music_fluidsynth_mididevice.cpp" />
     <ClCompile Include="src\sound\music_gme.cpp" />
     <ClCompile Include="src\sound\music_hmi_midiout.cpp" />
@@ -1102,7 +1103,6 @@
     <ClCompile Include="src\sound\music_wildmidi_mididevice.cpp" />
     <ClCompile Include="src\sound\music_win_mididevice.cpp" />
     <ClCompile Include="src\sound\music_xmi_midiout.cpp" />
-    <ClCompile Include="src\sound\oalsound.cpp" />
     <ClCompile Include="src\statistics.cpp" />
     <ClCompile Include="src\stats.cpp" />
     <ClCompile Include="src\stringtable.cpp" />
@@ -1276,7 +1276,6 @@
     <ClInclude Include="src\Info.h" />
     <ClInclude Include="src\intermission\intermission.h" />
     <ClInclude Include="src\i_cd.h" />
-    <ClInclude Include="src\i_module.h" />
     <ClInclude Include="src\i_movie.h" />
     <ClInclude Include="src\i_net.h" />
     <ClInclude Include="src\i_video.h" />
@@ -1405,13 +1404,12 @@
     <ClInclude Include="src\sfmt\SFMT.h" />
     <ClInclude Include="src\skins.h" />
     <ClInclude Include="src\SkylineBinPack.h" />
-    <ClInclude Include="src\sound\efx.h" />
+    <ClInclude Include="src\sound\fmodsound.h" />
+    <ClInclude Include="src\sound\fmod_wrap.h" />
     <ClInclude Include="src\sound\i_music.h" />
     <ClInclude Include="src\sound\i_musicinterns.h" />
     <ClInclude Include="src\sound\i_sound.h" />
     <ClInclude Include="src\sound\i_soundinternal.h" />
-    <ClInclude Include="src\sound\oaldef.h" />
-    <ClInclude Include="src\sound\oalsound.h" />
     <ClInclude Include="src\statnums.h" />
     <ClInclude Include="src\stats.h" />
     <ClInclude Include="src\stringtable.h" />
@@ -1552,12 +1550,20 @@
       <Project>{a7de5c73-d623-4118-a48a-bdfd1fae97d4}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="dumb\vc6\dumb_static\dumb_static.vcxproj">
+      <Project>{8997289f-10bf-4678-8baa-3bb509c84953}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
     <ProjectReference Include="game-music-emu\game-music-emu.vcxproj">
       <Project>{9b465a9e-e5c7-4577-b559-3ca2f7ae7d96}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="gdtoa\gdtoa.vcxproj">
       <Project>{b68e0abf-b627-48a3-a92f-d8f827a75054}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="jpeg-6b\jpeg-6b.vcxproj">
+      <Project>{ac3f5340-40cb-4c3a-8aa7-cb7158db4466}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="lzma\lzmalib.vcxproj">

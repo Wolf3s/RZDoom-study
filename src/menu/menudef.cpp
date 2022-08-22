@@ -181,9 +181,9 @@ static bool CheckSkipOptionBlock(FScanner &sc)
 				filter = true;
 			#endif
 		}
-		else if (sc.Compare("OpenAL"))
+		else if (sc.Compare("FMod"))
 		{
-			filter |= IsOpenALPresent();
+			filter |= IsFModExPresent();
 		}
 	}
 	while (sc.CheckString(","));

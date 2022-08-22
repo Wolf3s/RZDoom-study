@@ -48,17 +48,17 @@ enum ECodecType
 
 enum EStartSoundFlags
 {
-	SNDF_LOOP = 1,
-	SNDF_NOPAUSE = 2,
-	SNDF_AREA = 4,
-	SNDF_ABSTIME = 8,
-	SNDF_NOREVERB = 16,
+	SNDF_LOOP=1,
+	SNDF_NOPAUSE=2,
+	SNDF_AREA=4,
+	SNDF_ABSTIME=8,
+	SNDF_NOREVERB=16,
 };
 
 class SoundStream
 {
 public:
-	virtual ~SoundStream();
+	virtual ~SoundStream ();
 
 	enum
 	{	// For CreateStream
@@ -82,15 +82,15 @@ public:
 	virtual FString GetStats();
 };
 
-typedef bool (*SoundStreamCallback)(SoundStream* stream, void* buff, int len, void* userdata);
+typedef bool (*SoundStreamCallback)(SoundStream *stream, void *buff, int len, void *userdata);
 
 struct SoundDecoder;
 
 class SoundRenderer
 {
 public:
-	SoundRenderer();
-	virtual ~SoundRenderer();
+	SoundRenderer ();
+	virtual ~SoundRenderer ();
 
 	virtual bool IsNull() { return false; }
 	virtual void SetSfxVolume(float volume) = 0;
@@ -104,34 +104,34 @@ public:
 	virtual float GetOutputRate() = 0;
 
 	// Streaming sounds.
-	virtual SoundStream* CreateStream(SoundStreamCallback callback, int buffbytes, int flags, int samplerate, void* userdata) = 0;
-	virtual SoundStream* OpenStream(FileReader* reader, int flags) = 0;
-	virtual SoundStream* OpenStream(const char* url, int flags);
+	virtual SoundStream *CreateStream (SoundStreamCallback callback, int buffbytes, int flags, int samplerate, void *userdata) = 0;
+    virtual SoundStream *OpenStream (FileReader *reader, int flags) = 0;
+	virtual SoundStream *OpenStream (const char *url, int flags);
 
 	// Starts a sound.
-	virtual FISoundChannel* StartSound(SoundHandle sfx, float vol, int pitch, int chanflags, FISoundChannel* reuse_chan) = 0;
-	virtual FISoundChannel* StartSound3D(SoundHandle sfx, SoundListener* listener, float vol, FRolloffInfo* rolloff, float distscale, int pitch, int priority, const FVector3& pos, const FVector3& vel, int channum, int chanflags, FISoundChannel* reuse_chan) = 0;
+	virtual FISoundChannel *StartSound (SoundHandle sfx, float vol, int pitch, int chanflags, FISoundChannel *reuse_chan) = 0;
+	virtual FISoundChannel *StartSound3D (SoundHandle sfx, SoundListener *listener, float vol, FRolloffInfo *rolloff, float distscale, int pitch, int priority, const FVector3 &pos, const FVector3 &vel, int channum, int chanflags, FISoundChannel *reuse_chan) = 0;
 
 	// Stops a sound channel.
-	virtual void StopChannel(FISoundChannel* chan) = 0;
+	virtual void StopChannel (FISoundChannel *chan) = 0;
 
 	// Changes a channel's volume.
-	virtual void ChannelVolume(FISoundChannel* chan, float volume) = 0;
+	virtual void ChannelVolume (FISoundChannel *chan, float volume) = 0;
 
 	// Marks a channel's start time without actually playing it.
-	virtual void MarkStartTime(FISoundChannel* chan) = 0;
+	virtual void MarkStartTime (FISoundChannel *chan) = 0;
 
 	// Returns position of sound on this channel, in samples.
-	virtual unsigned int GetPosition(FISoundChannel* chan) = 0;
+	virtual unsigned int GetPosition(FISoundChannel *chan) = 0;
 
 	// Gets a channel's audibility (real volume).
-	virtual float GetAudibility(FISoundChannel* chan) = 0;
+	virtual float GetAudibility(FISoundChannel *chan) = 0;
 
 	// Synchronizes following sound startups.
-	virtual void Sync(bool sync) = 0;
+	virtual void Sync (bool sync) = 0;
 
 	// Pauses or resumes all sound effect channels.
-	virtual void SetSfxPaused(bool paused, int slot) = 0;
+	virtual void SetSfxPaused (bool paused, int slot) = 0;
 
 	// Pauses or resumes *every* channel, including environmental reverb.
 	enum EInactiveState
@@ -143,38 +143,38 @@ public:
 	virtual void SetInactive(EInactiveState inactive) = 0;
 
 	// Updates the volume, separation, and pitch of a sound channel.
-	virtual void UpdateSoundParams3D(SoundListener* listener, FISoundChannel* chan, bool areasound, const FVector3& pos, const FVector3& vel) = 0;
+	virtual void UpdateSoundParams3D (SoundListener *listener, FISoundChannel *chan, bool areasound, const FVector3 &pos, const FVector3 &vel) = 0;
 
-	virtual void UpdateListener(SoundListener*) = 0;
-	virtual void UpdateSounds() = 0;
+	virtual void UpdateListener (SoundListener *) = 0;
+	virtual void UpdateSounds () = 0;
 	virtual void UpdateMusic() {}
 
-	virtual bool IsValid() = 0;
-	virtual void PrintStatus() = 0;
-	virtual void PrintDriversList() = 0;
-	virtual FString GatherStats();
-	virtual short* DecodeSample(int outlen, const void* coded, int sizebytes, ECodecType type);
+	virtual bool IsValid () = 0;
+	virtual void PrintStatus () = 0;
+	virtual void PrintDriversList () = 0;
+	virtual FString GatherStats ();
+	virtual short *DecodeSample(int outlen, const void *coded, int sizebytes, ECodecType type);
 
 	virtual void DrawWaveDebug(int mode);
 
 protected:
-	virtual SoundDecoder* CreateDecoder(FileReader* reader);
+    virtual SoundDecoder *CreateDecoder(FileReader *reader);
 };
 
-extern SoundRenderer* GSnd;
+extern SoundRenderer *GSnd;
 extern bool nosfx;
 extern bool nosound;
 
-void I_InitSound();
-void I_ShutdownSound();
+void I_InitSound ();
+void I_ShutdownSound ();
 
-void S_ChannelEnded(FISoundChannel* schan);
-void S_ChannelVirtualChanged(FISoundChannel* schan, bool is_virtual);
-float S_GetRolloff(FRolloffInfo* rolloff, float distance, bool logarithmic);
-FISoundChannel* S_GetChannel(void* syschan);
+void S_ChannelEnded(FISoundChannel *schan);
+void S_ChannelVirtualChanged(FISoundChannel *schan, bool is_virtual);
+float S_GetRolloff(FRolloffInfo *rolloff, float distance, bool logarithmic);
+FISoundChannel *S_GetChannel(void *syschan);
 
-extern ReverbContainer* DefaultEnvironments[26];
+extern ReverbContainer *DefaultEnvironments[26];
 
-bool IsOpenALPresent();
+bool IsFModExPresent();
 
 #endif

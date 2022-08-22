@@ -1,3 +1,6 @@
+NOTE: RZDoom now lives at sourceforge: https://sourceforge.net/projects/rzdoom/
+This repository is thus archived and all future work will take place there.
+
 # So what is RZDoom?
 RZDoom is a ZDoom 2.8.1 fork with bug fixes, my additions and my optimisations for many systems.  Consider it the true successor to ZDoom, without all the ancient cruft that nobody has removed in other forks except myself.  It runs better and it is future-proofed.
 

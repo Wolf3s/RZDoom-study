@@ -28,12 +28,12 @@ endif(${CMAKE_MAJOR_VERSION} GREATER 2 OR ${CMAKE_MINOR_VERSION} GREATER 7)
 option( FORCE_CROSSCOMPILE "Turn on cross compiling." NO )
 if( FORCE_CROSSCOMPILE )
 	set( CMAKE_CROSSCOMPILING TRUE )
-endif( FORCE_CROSSCOMPILE )
+endif()
 
 if(CMAKE_CROSSCOMPILING)
 	set(IMPORT_EXECUTABLES "IMPORTFILE-NOTFOUND" CACHE FILEPATH "Export file from native build.")
 	include(${IMPORT_EXECUTABLES})
-endif(CMAKE_CROSSCOMPILING)
+endif()
 
 # Simplify pk3 building, add_pk3(filename srcdirectory)
 function( add_pk3 PK3_NAME PK3_DIR )
@@ -113,7 +113,7 @@ option( NO_FMOD "Disable FMOD sound support" OFF )
 find_package( BZip2 )
 find_package( ZLIB )
 # GME
-find_path( GME_INCLUDE_DIR gme/gme.h )
+find_path( GME_INCLUDE_DIR gme.h )
 find_library( GME_LIBRARIES gme )
 mark_as_advanced( GME_INCLUDE_DIR GME_LIBRARIES )
 FIND_PACKAGE_HANDLE_STANDARD_ARGS( GME
@@ -124,12 +124,11 @@ if( MSVC )
 	# Eliminate unreferenced functions and data
 	# Perform identical COMDAT folding
 	set( REL_LINKER_FLAGS "/opt:ref /opt:icf /nodefaultlib:msvcrt /TSAWARE /LARGEADDRESSAWARE" )
-	set(ALL_LINKER_FLAGS "/SAFESEH:NO")
 
 	# String pooling
 	# Function-level linking
 	# Disable run-time type information
-	set( ALL_C_FLAGS "/GF /Gy /GR- /fp:fast" )
+	set( ALL_C_FLAGS "/GF /Gy /GR-" )
 	
 	if( CMAKE_SIZEOF_VOID_P MATCHES "4")
 		# SSE2 option (mostly to switch it off in VC2012 and later where it's the default
@@ -172,14 +171,12 @@ if( MSVC )
 	string(REPLACE "/MDd " " " CMAKE_C_FLAGS_DEBUG ${CMAKE_C_FLAGS_DEBUG} )
 	string(REPLACE " /GR" " " CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} )
 else( MSVC )
-	set(ALL_LINKER_FLAGS "")
 	set( REL_LINKER_FLAGS "" )
 	set( ALL_C_FLAGS "" )
 	set( REL_C_FLAGS "" )
 	set( DEB_C_FLAGS "" )
 endif( MSVC )
 
-set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${ALL_LINKER_FLAGS}")
 set( CMAKE_EXE_LINKER_FLAGS_RELEASE "${CMAKE_EXE_LINKER_FLAGS_RELEASE} ${REL_LINKER_FLAGS}" )
 set( CMAKE_EXE_LINKER_FLAGS_MINSIZEREL "${CMAKE_EXE_LINKER_FLAGS_MINSIZEREL} ${REL_LINKER_FLAGS}" )
 set( CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO "${CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO} ${REL_LINKER_FLAGS}" )

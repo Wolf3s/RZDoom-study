@@ -561,7 +561,7 @@ void MIDIStreamer::MusicVolumeChanged()
 {
 	if (MIDI != NULL && MIDI->FakeVolume())
 	{
-		float realvolume = clamp<float>(snd_musicvolume * relative_volume, 0.f, 1.f);
+		float realvolume = clamp<float>(snd_musicvolume * relative_volume * snd_mastervolume, 0.f, 1.f);
 		Volume = clamp<DWORD>((DWORD)(realvolume * 65535.f), 0, 65535);
 	}
 	else
@@ -1140,13 +1140,13 @@ void MIDIStreamer::Precache()
 	DoRestart();
 
 	// Now pack everything into a contiguous region for the PrecacheInstruments call().
-	TArray<uint16_t> packed;
+	TArray<WORD> packed;
 
 	for (int i = 0; i < 256; ++i)
 	{
 		if (found_instruments[i])
 		{
-			uint16_t packnum = (i & 127) | ((i & 128) << 7);
+			WORD packnum = (i & 127) | ((i & 128) << 7);
 			if (!multiple_banks)
 			{
 				packed.Push(packnum);
@@ -1438,7 +1438,7 @@ MIDIDevice::~MIDIDevice()
 //
 //==========================================================================
 
-void MIDIDevice::PrecacheInstruments(const uint16_t *instruments, int count)
+void MIDIDevice::PrecacheInstruments(const WORD *instruments, int count)
 {
 }
 

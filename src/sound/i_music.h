@@ -42,47 +42,47 @@ struct FOptionValues;
 //
 //	MUSIC I/O
 //
-void I_InitMusic();
-void I_ShutdownMusic(bool onexit = false);
-void I_ShutdownMusicExit();
-void I_BuildMIDIMenuList(FOptionValues*);
-void I_UpdateMusic();
+void I_InitMusic ();
+void I_ShutdownMusic (bool onexit = false);
+void I_ShutdownMusicExit ();
+void I_BuildMIDIMenuList (FOptionValues *);
+void I_UpdateMusic ();
 
 // Volume.
-void I_SetMusicVolume(double volume);
+void I_SetMusicVolume (float volume);
 
 // Registers a song handle to song data.
 class MusInfo;
 struct MidiDeviceSetting;
-MusInfo* I_RegisterSong(FileReader* reader, MidiDeviceSetting* device);
-MusInfo* I_RegisterCDSong(int track, int cdid = 0);
-MusInfo* I_RegisterURLSong(const char* url);
+MusInfo *I_RegisterSong (FileReader *reader, MidiDeviceSetting *device);
+MusInfo *I_RegisterCDSong (int track, int cdid = 0);
+MusInfo *I_RegisterURLSong (const char *url);
 
 // The base music class. Everything is derived from this --------------------
 
 class MusInfo
 {
 public:
-	MusInfo();
-	virtual ~MusInfo();
+	MusInfo ();
+	virtual ~MusInfo ();
 	virtual void MusicVolumeChanged();		// snd_musicvolume changed
 	virtual void TimidityVolumeChanged();	// timidity_mastervolume changed
-	virtual void Play(bool looping, int subsong) = 0;
-	virtual void Pause() = 0;
-	virtual void Resume() = 0;
-	virtual void Stop() = 0;
-	virtual bool IsPlaying() = 0;
-	virtual bool IsMIDI() const;
-	virtual bool IsValid() const = 0;
-	virtual bool SetPosition(unsigned int ms);
-	virtual bool SetSubsong(int subsong);
+	virtual void Play (bool looping, int subsong) = 0;
+	virtual void Pause () = 0;
+	virtual void Resume () = 0;
+	virtual void Stop () = 0;
+	virtual bool IsPlaying () = 0;
+	virtual bool IsMIDI () const;
+	virtual bool IsValid () const = 0;
+	virtual bool SetPosition (unsigned int ms);
+	virtual bool SetSubsong (int subsong);
 	virtual void Update();
 	virtual FString GetStats();
-	virtual MusInfo* GetOPLDumper(const char* filename);
-	virtual MusInfo* GetWaveDumper(const char* filename, int rate);
-	virtual void FluidSettingInt(const char* setting, int value);			// FluidSynth settings
-	virtual void FluidSettingNum(const char* setting, double value);		// "
-	virtual void FluidSettingStr(const char* setting, const char* value);	// "
+	virtual MusInfo *GetOPLDumper(const char *filename);
+	virtual MusInfo *GetWaveDumper(const char *filename, int rate);
+	virtual void FluidSettingInt(const char *setting, int value);			// FluidSynth settings
+	virtual void FluidSettingNum(const char *setting, double value);		// "
+	virtual void FluidSettingStr(const char *setting, const char *value);	// "
 	virtual void WildMidiSetOption(int opt, int set);
 	virtual void GMEDepthChanged(float val);
 

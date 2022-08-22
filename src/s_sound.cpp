@@ -130,7 +130,7 @@ FSoundChan *Channels;
 FSoundChan *FreeChannels;
 
 FRolloffInfo S_Rolloff;
-uint8_t *S_SoundCurve;
+BYTE *S_SoundCurve;
 int S_SoundCurveSize;
 
 FBoolCVar noisedebug ("noise", false, 0);	// [RH] Print sound debugging info?
@@ -302,7 +302,7 @@ void S_Init ()
 	if (curvelump >= 0)
 	{
 		S_SoundCurveSize = Wads.LumpLength (curvelump);
-		S_SoundCurve = new uint8_t[S_SoundCurveSize];
+		S_SoundCurve = new BYTE[S_SoundCurveSize];
 		Wads.ReadLump(curvelump, S_SoundCurve);
 	}
 
@@ -449,7 +449,7 @@ void S_Start ()
 
 	// Don't start the music if loading a savegame, because the music is stored there.
 	// Don't start the music if revisiting a level in a hub for the same reason.
-	if (!savegamerestore && (level.info == nullptr || level.info->snapshot == NULL || !level.info->isValid()))
+	if (!savegamerestore && (level.info == NULL || level.info->snapshot == NULL || !level.info->isValid()))
 	{
 		if (level.cdtrack == 0 || !S_ChangeCDMusic (level.cdtrack, level.cdid))
 			S_ChangeMusic (level.Music, level.musicorder);

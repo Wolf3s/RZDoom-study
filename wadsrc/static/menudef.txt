@@ -1506,11 +1506,37 @@ OptionString Resamplers
 	"Spline",		"Spline"
 }
 
-OptionMenu OpenALSoundItems
+
+OptionString SoundBackends
 {
-	Title "OPENAL OPTIONS"
-	Option "Enable EFX",		"snd_efx",	"OnOff"
+	"fmod",		"FMOD Studio"
+	"null",		"No Sound"
 }
+
+OptionMenu FMODSoundItems
+{
+	Title "FMOD OPTIONS"
+	Slider	"Underwater cutoff",	"snd_waterlp", 0.0, 2000.0, 50.0, 0
+	IfOption(Windows)
+	{
+		Option "Output system",  "snd_output", "SoundOutputsWindows"
+	}
+	IfOption(Unix)
+	{
+		Option "Output system",  "snd_output", "SoundOutputsUnix"
+	}
+	IfOption(Mac)
+	{
+		Option "Output system",  "snd_output", "SoundOutputsMac"
+	}
+	Option "Output format",      "snd_output_format", "OutputFormats"
+	Option "Speaker mode",       "snd_speakermode", "SpeakerModes"
+	Option "Resampler",          "snd_resampler", "Resamplers"
+	StaticText " "
+	Option "Buffer size",	    "snd_buffersize", "BufferSizes"
+	Option "Buffer count",	    "snd_buffercount", "BufferCounts"
+}
+
 
 OptionValue MidiDevices
 {
@@ -1528,11 +1554,13 @@ OptionMenu SoundOptions
 	Option "Randomize pitches",	"snd_pitched", "OnOff"
 	Slider "Sound channels",	"snd_channels", 8, 256, 8, 0
 	StaticText " "
-	Submenu "OpenAL options",	"OpenALSoundItems"
+	Option "Sound backend",		"snd_backend", "SoundBackends"
+	Submenu "FMOD options",		"FMODSoundItems"
 	StaticText " "
 	Command "Restart sound",		"snd_reset"
 	StaticText " "
 	Submenu "Advanced options",		"AdvSoundOptions"
+	Submenu "Module replayer options",	"ModReplayerOptions"
 }
 
 /*=======================================
@@ -1590,6 +1618,56 @@ OptionMenu AdvSoundOptions
 	StaticText "WildMidi",	1
 	TextField "WildMidi config file", "wildmidi_config"
 	Option "Reverb", "wildmidi_reverb", "OnOff"
+}
+
+/*=======================================
+ *
+ * Module Replayer Options Menu
+ *
+ *=======================================*/
+
+OptionValue ModReplayers
+{
+	0.0, "Sound System"
+	1.0, "foo_dumb"
+}
+
+
+OptionValue ModQuality
+{
+	0.0, "Aliasing"
+	1.0, "Linear"
+	2.0, "Cubic"
+	3.0, "Band-limited step"		// BLEP
+	4.0, "Linear (Slower)"
+	5.0, "Band-limited linear"		// BLAM
+	6.0, "Cubic (Slower)"
+	7.0, "Sinc"
+}
+
+
+OptionValue ModVolumeRamps
+{
+	0.0, "None"
+	1.0, "Note on/off only"
+	2.0, "Full ramping"
+}
+
+
+OptionMenu ModReplayerOptions
+{
+	Title "MODULE REPLAYER OPTIONS"
+	Option "Replayer engine",		"mod_dumb", "ModReplayers"
+	StaticText " "
+	Slider "Master Volume",			"mod_dumb_mastervolume", 1, 16, 0.5, 1
+	Option "Sample rate",			"mod_samplerate", "SampleRates", "mod_dumb"
+	Option "Quality",				"mod_interp", "ModQuality", "mod_dumb"
+	Option "Volume ramping",		"mod_volramp", "ModVolumeRamps", "mod_dumb"
+	StaticText " "
+	Option "Chip-o-matic",			"mod_autochip", "OnOff", "mod_dumb"
+	// TODO if the menu system is ever rewritten: Provide a decent
+	// mechanism to edit the chip-o-matic settings like you can with
+	// the foo_dumb preferences in foobar2000.
 }
 
 /*=======================================

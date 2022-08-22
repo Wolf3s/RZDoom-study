@@ -1362,6 +1362,12 @@
     <ClCompile Include="src\r_utility.cpp">
       <Filter>Render Interface</Filter>
     </ClCompile>
+    <ClCompile Include="src\sound\music_dumb.cpp">
+      <Filter>Audio Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sound\fmodsound.cpp">
+      <Filter>Audio Files</Filter>
+    </ClCompile>
     <ClCompile Include="src\win32\hardware.cpp">
       <Filter>Win32 Files</Filter>
     </ClCompile>
@@ -1378,12 +1384,6 @@
       <Filter>Win32 Files</Filter>
     </ClCompile>
     <ClCompile Include="src\umapinfo.cpp">
-      <Filter>!Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\sound\oalsound.cpp">
-      <Filter>Audio Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\i_module.cpp">
       <Filter>!Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -2045,23 +2045,17 @@
     <ClInclude Include="src\r_utility.h">
       <Filter>Render Interface</Filter>
     </ClInclude>
+    <ClInclude Include="src\sound\fmod_wrap.h">
+      <Filter>Audio Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sound\fmodsound.h">
+      <Filter>Audio Files</Filter>
+    </ClInclude>
     <ClInclude Include="src\win32\hardware.h">
       <Filter>Win32 Files</Filter>
     </ClInclude>
     <ClInclude Include="src\win32\win32iface.h">
       <Filter>Win32 Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\sound\oaldef.h">
-      <Filter>Audio Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\sound\oalsound.h">
-      <Filter>Audio Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\i_module.h">
-      <Filter>!Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\sound\efx.h">
-      <Filter>Audio Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
