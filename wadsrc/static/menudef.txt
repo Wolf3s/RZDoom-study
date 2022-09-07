@@ -1451,28 +1451,28 @@ OptionValue BufferCounts
 OptionString SoundOutputsWindows
 {
 	"Default",		"Default"
+	"DirectSound",	"DirectSound"
 	"WASAPI",		"Vista WASAPI"
 	"ASIO",			"ASIO"
+	"WaveOut",		"WaveOut"
 	"No sound",		"No sound"
 }
 
 OptionString SoundOutputsUnix
 {
 	"Default",		"Default"
+	"OSS",			"OSS"
 	"ALSA",			"ALSA"
-	"PulseAudio",		"PulseAudio"
+	"SDL",			"SDL"
+	"ESD",			"ESD"
+	"PulseAudio",	"PulseAudio"
 	"No sound",		"No sound"
 }
 
 OptionString SoundOutputsMac
 {
 	"Core Audio",		"Core Audio"
-	"No sound",		"No sound"
-}
-
-OptionString ALDevices
-{
-	// filled in by the sound code
+	"No sound",			"No sound"
 }
 
 OptionString OutputFormats
@@ -1509,7 +1509,7 @@ OptionString Resamplers
 
 OptionString SoundBackends
 {
-	"fmod",		"FMOD Studio"
+	"fmod",		"FMOD"
 	"null",		"No Sound"
 }
 
@@ -1628,7 +1628,7 @@ OptionMenu AdvSoundOptions
 
 OptionValue ModReplayers
 {
-	0.0, "Sound System"
+	0.0, "FMOD"
 	1.0, "foo_dumb"
 }
 
@@ -1638,11 +1638,6 @@ OptionValue ModQuality
 	0.0, "Aliasing"
 	1.0, "Linear"
 	2.0, "Cubic"
-	3.0, "Band-limited step"		// BLEP
-	4.0, "Linear (Slower)"
-	5.0, "Band-limited linear"		// BLAM
-	6.0, "Cubic (Slower)"
-	7.0, "Sinc"
 }
 
 

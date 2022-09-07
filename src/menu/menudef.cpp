@@ -181,7 +181,7 @@ static bool CheckSkipOptionBlock(FScanner &sc)
 				filter = true;
 			#endif
 		}
-		else if (sc.Compare("FMod"))
+		else if (sc.Compare("FModEx"))
 		{
 			filter |= IsFModExPresent();
 		}

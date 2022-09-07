@@ -15,8 +15,8 @@ public:
 
 	void SetSfxVolume (float volume);
 	void SetMusicVolume (float volume);
-	SoundHandle LoadSound(BYTE* sfxdata, int length);
-	SoundHandle LoadSoundRaw(BYTE* sfxdata, int length, int frequency, int channels, int bits, int loopstart, int loopend = -1);
+	SoundHandle LoadSound(BYTE *sfxdata, int length);
+	SoundHandle LoadSoundRaw(BYTE *sfxdata, int length, int frequency, int channels, int bits, int loopstart, int loopend = -1);
 	void UnloadSound (SoundHandle sfx);
 	unsigned int GetMSLength(SoundHandle sfx);
 	unsigned int GetSampleLength(SoundHandle sfx);
@@ -76,8 +76,8 @@ private:
 	QWORD_UNION DSPClock;
 	int OutputRate;
 
-	static FMOD_RESULT F_CALLBACK ChannelCallback(FMOD_CHANNELCONTROL *channel, FMOD_CHANNELCONTROL_TYPE controltype, FMOD_CHANNELCONTROL_CALLBACK_TYPE type, void *data1, void *data2);
-	static float F_CALLBACK RolloffCallback(FMOD_CHANNELCONTROL *channel, float distance);
+	static FMOD_RESULT F_CALLBACK ChannelCallback(FMOD_CHANNEL *channel, FMOD_CHANNEL_CALLBACKTYPE type, void *data1, void *data2);
+	static float F_CALLBACK RolloffCallback(FMOD_CHANNEL *channel, float distance);
 
 	bool HandleChannelDelay(FMOD::Channel *chan, FISoundChannel *reuse_chan, int flags, float freq) const;
 	FISoundChannel *CommonChannelSetup(FMOD::Channel *chan, FISoundChannel *reuse_chan) const;
@@ -89,6 +89,7 @@ private:
 
 	bool Init ();
 	void Shutdown ();
+	void DumpDriverCaps(FMOD_CAPS caps, int minfrequency, int maxfrequency);
 
 	int DrawChannelGroupOutput(FMOD::ChannelGroup *group, float *wavearray, int width, int height, int y, int mode);
 	int DrawSystemOutput(float *wavearray, int width, int height, int y, int mode);
@@ -120,6 +121,7 @@ private:
 	// Just for snd_status display
 	int Driver_MinFrequency;
 	int Driver_MaxFrequency;
+	FMOD_CAPS Driver_Caps;
 
 	friend class FMODStreamCapsule;
 };

@@ -106,7 +106,7 @@
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\FMOD SoundSystem\FMOD Studio API Windows\api\core\inc;C:\sdl2_32bit;src\win32;src\sound;src;zlib;src\g_shared;src\g_doom;src\g_raven;src\g_heretic;src\g_hexen;src\g_strife;jpeg-6b;game-music-emu;gdtoa;bzip2;lzma\C;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src\win32;src\sound;src;zlib;src\g_shared;src\g_doom;src\g_raven;src\g_heretic;src\g_hexen;src\g_strife;jpeg-6b;game-music-emu;gdtoa;bzip2;lzma\C;C:\Program Files (x86)\FMOD SoundSystem\FMOD Programmers API Win32\api\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>NDEBUG;WIN32;_WIN32;_WINDOWS;HAVE_STRUPR;HAVE_FILELENGTH;NO_VA_COPY;BACKPATCH;HAVE_FLUIDSYNTH;DYN_FLUIDSYNTH;HAVE_OPENAL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <ExceptionHandling>Sync</ExceptionHandling>
@@ -134,7 +134,7 @@
     </ResourceCompile>
     <Link>
       <AdditionalOptions>/MACHINE:I386 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>shfolder.lib;gdi32.lib;user32.lib;comctl32.lib;shell32.lib;advapi32.lib;comdlg32.lib;ole32.lib;dxguid.lib;dsound.lib;dinput8.lib;strmiids.lib;wsock32.lib;winmm.lib;fmod_vc.lib;setupapi.lib;ws2_32.lib;oleaut32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>shfolder.lib;gdi32.lib;user32.lib;comctl32.lib;shell32.lib;advapi32.lib;comdlg32.lib;ole32.lib;dxguid.lib;dsound.lib;dinput8.lib;strmiids.lib;wsock32.lib;winmm.lib;fmodex_vc.lib;setupapi.lib;ws2_32.lib;oleaut32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ShowProgress>NotSet</ShowProgress>
       <OutputFile>../rzdoom.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -153,7 +153,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <LinkTimeCodeGeneration />
       <SetChecksum>true</SetChecksum>
-      <AdditionalLibraryDirectories>C:\Program Files %28x86%29\FMOD SoundSystem\FMOD Studio API Windows\api\core\lib\x86;C:\sdl2_32bit;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Program Files (x86)\FMOD SoundSystem\FMOD Programmers API Win32\api\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -170,7 +170,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
-      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\FMOD SoundSystem\FMOD Studio API Windows\api\core\inc;C:\sdl2;src\win32;src\sound;src;zlib;src\g_shared;src\g_doom;src\g_raven;src\g_heretic;src\g_hexen;src\g_strife;jpeg-6b;game-music-emu;gdtoa;bzip2;lzma\C;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src\win32;src\sound;src;zlib;src\g_shared;src\g_doom;src\g_raven;src\g_heretic;src\g_hexen;src\g_strife;jpeg-6b;game-music-emu;gdtoa;bzip2;lzma\C;C:\Program Files (x86)\FMOD SoundSystem\FMOD Programmers API Win64\api\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FMOD_STUDIO;NDEBUG;WIN32;_WIN32;_WINDOWS;HAVE_STRUPR;HAVE_FILELENGTH;NO_VA_COPY;NO_OPENAL;HAVE_FMOD;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
@@ -192,7 +192,7 @@
       <Culture>0x0409</Culture>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>ddraw.lib;dxguid.lib;dinput8.lib;comctl32.lib;strmiids.lib;wsock32.lib;ws2_32.lib;winmm.lib;fmod_vc.lib;setupapi.lib;oleaut32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ddraw.lib;dxguid.lib;dinput8.lib;comctl32.lib;strmiids.lib;wsock32.lib;ws2_32.lib;winmm.lib;fmodex64_vc.lib;setupapi.lib;oleaut32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ShowProgress>NotSet</ShowProgress>
       <OutputFile>../rzdoom.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -211,7 +211,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <SetChecksum>true</SetChecksum>
       <TargetMachine>MachineX64</TargetMachine>
-      <AdditionalLibraryDirectories>C:\Program Files %28x86%29\FMOD SoundSystem\FMOD Studio API Windows\api\core\lib\x64;C:\sdl2;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Program Files (x86)\FMOD SoundSystem\FMOD Programmers API Win64\api\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -224,7 +224,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>src\win32;src\sound;src;zlib;src\g_shared;src\g_doom;src\g_raven;src\g_heretic;src\g_hexen;src\g_strife;jpeg-6b;game-music-emu;gdtoa;bzip2;lzma\C;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src\win32;src\sound;src;zlib;src\g_shared;src\g_doom;src\g_raven;src\g_heretic;src\g_hexen;src\g_strife;jpeg-6b;game-music-emu;gdtoa;bzip2;lzma\C;C:\Program Files (x86)\FMOD SoundSystem\FMOD Programmers API Win32\api\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WIN32;_WINDOWS;_CRTDBG_MAP_ALLOC;HAVE_STRUPR;HAVE_FILELENGTH;NO_VA_COPY;BACKPATCH;HAVE_FLUIDSYNTH;DYN_FLUIDSYNTH;NO_OPENAL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -246,7 +246,7 @@
     </ResourceCompile>
     <Link>
       <AdditionalOptions>/MACHINE:I386 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>shfolder.lib;gdi32.lib;user32.lib;comctl32.lib;shell32.lib;advapi32.lib;comdlg32.lib;ole32.lib;dxguid.lib;dsound.lib;dinput8.lib;strmiids.lib;wsock32.lib;winmm.lib;setupapi.lib;ws2_32.lib;oleaut32.lib;fmod_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>shfolder.lib;gdi32.lib;user32.lib;comctl32.lib;shell32.lib;advapi32.lib;comdlg32.lib;ole32.lib;dxguid.lib;dsound.lib;dinput8.lib;strmiids.lib;wsock32.lib;winmm.lib;setupapi.lib;ws2_32.lib;oleaut32.lib;fmodex_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>../rzdoomd.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <IgnoreSpecificDefaultLibraries>libcmt;msvcrtd;msvcrt;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
@@ -259,6 +259,7 @@
       <TerminalServerAware>true</TerminalServerAware>
       <SetChecksum>false</SetChecksum>
       <TargetMachine>NotSet</TargetMachine>
+      <AdditionalLibraryDirectories>C:\Program Files (x86)\FMOD SoundSystem\FMOD Programmers API Win32\api\lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -271,7 +272,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>src\win32;src\sound;src;zlib;src\g_shared;src\g_doom;src\g_raven;src\g_heretic;src\g_hexen;src\g_strife;jpeg-6b;game-music-emu;gdtoa;bzip2;lzma\C;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src\win32;src\sound;src;zlib;src\g_shared;src\g_doom;src\g_raven;src\g_heretic;src\g_hexen;src\g_strife;jpeg-6b;game-music-emu;gdtoa;bzip2;lzma\C;C:\Program Files (x86)\FMOD SoundSystem\FMOD Programmers API Win64\api\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WIN32;_WINDOWS;_CRTDBG_MAP_ALLOC;HAVE_STRUPR;HAVE_FILELENGTH;NO_VA_COPY;NO_OPENAL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -294,7 +295,7 @@
       <Culture>0x0409</Culture>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>dxguid.lib;ddraw.lib;dinput8.lib;comctl32.lib;strmiids.lib;wsock32.lib;winmm.lib;fmod_vc.lib;setupapi.lib;ws2_32.lib;oleaut32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>dxguid.lib;ddraw.lib;dinput8.lib;comctl32.lib;strmiids.lib;wsock32.lib;winmm.lib;fmodex64_vc.lib;setupapi.lib;ws2_32.lib;oleaut32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>../rzdoomd64.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <IgnoreSpecificDefaultLibraries>msvcrtd;libcmt;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
@@ -307,6 +308,7 @@
       <TerminalServerAware>true</TerminalServerAware>
       <SetChecksum>false</SetChecksum>
       <TargetMachine>MachineX64</TargetMachine>
+      <AdditionalLibraryDirectories>C:\Program Files (x86)\FMOD SoundSystem\FMOD Programmers API Win64\api\lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
