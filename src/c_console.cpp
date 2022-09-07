@@ -873,54 +873,6 @@ void C_DrawConsole (bool hw2d)
 			screen->Clear (0, visheight, screen->GetWidth(), visheight+1, 0, 0);
 		}
 
-		if (ConBottom >= 12)
-		{
-			screen->DrawText (ConFont, CR_ORANGE, SCREENWIDTH - 8 -
-				ConFont->StringWidth (GetVersionString()),
-				ConBottom - ConFont->GetHeight() - 4,
-				GetVersionString(), TAG_DONE);
-			if (TickerMax)
-			{
-				char tickstr[256];
-				const int tickerY = ConBottom - ConFont->GetHeight() - 4;
-				size_t i;
-				int tickend = ConCols - SCREENWIDTH / 90 - 6;
-				int tickbegin = 0;
-
-				if (TickerLabel)
-				{
-					tickbegin = (int)strlen (TickerLabel) + 2;
-					mysnprintf (tickstr, countof(tickstr), "%s: ", TickerLabel);
-				}
-				if (tickend > 256 - ConFont->GetCharWidth(0x12))
-					tickend = 256 - ConFont->GetCharWidth(0x12);
-				tickstr[tickbegin] = 0x10;
-				memset (tickstr + tickbegin + 1, 0x11, tickend - tickbegin);
-				tickstr[tickend + 1] = 0x12;
-				tickstr[tickend + 2] = ' ';
-				if (TickerPercent)
-				{
-					mysnprintf (tickstr + tickend + 3, countof(tickstr) - tickend - 3,
-						"%d%%", Scale (TickerAt, 100, TickerMax));
-				}
-				else
-				{
-					tickstr[tickend+3] = 0;
-				}
-				screen->DrawText (ConFont, CR_BROWN, LEFTMARGIN, tickerY, tickstr, TAG_DONE);
-
-				// Draw the marker
-				i = LEFTMARGIN+5+tickbegin*8 + Scale (TickerAt, (SDWORD)(tickend - tickbegin)*8, TickerMax);
-				screen->DrawChar (ConFont, CR_ORANGE, (int)i, tickerY, 0x13, TAG_DONE);
-
-				TickerVisible = true;
-			}
-			else
-			{
-				TickerVisible = false;
-			}
-		}
-
 		// Apply palette blend effects
 		if (StatusBar != NULL && !hw2d)
 		{
