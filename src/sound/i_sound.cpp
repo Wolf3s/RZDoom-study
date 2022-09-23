@@ -278,33 +278,6 @@ void I_InitSound()
 			GSnd = new FMODSoundRenderer;
 		}
 #endif
-#ifndef NO_OPENAL
-		if ((!GSnd || !GSnd->IsValid()) && IsOpenALPresent())
-		{
-			Printf(TEXTCOLOR_RED"FMod Ex Sound init failed. Trying OpenAL.\n");
-			I_CloseSound();
-			GSnd = new OpenALSoundRenderer;
-			snd_backend = "openal";
-		}
-#endif
-	}
-	else if (stricmp(snd_backend, "openal") == 0)
-	{
-#ifndef NO_OPENAL
-		if (IsOpenALPresent())
-		{
-			GSnd = new OpenALSoundRenderer;
-		}
-#endif
-#ifndef NO_FMOD
-		if ((!GSnd || !GSnd->IsValid()) && IsFModExPresent())
-		{
-			Printf(TEXTCOLOR_RED"OpenAL Sound init failed. Trying FMod Ex.\n");
-			I_CloseSound();
-			GSnd = new FMODSoundRenderer;
-			snd_backend = "fmod";
-		}
-#endif
 	}
 	else
 	{
